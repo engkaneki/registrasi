@@ -1,6 +1,8 @@
 <?php
 include 'header.php';
 $desa = $_GET['desa'];
+$petugas = $row['username'];
+$tgl = $_GET['tgl'];
 ?>
 
 <!-- Main Content -->
@@ -11,7 +13,7 @@ $desa = $_GET['desa'];
             <div class="card-body">
                 <h4 class="card-title">DATA BERKAS <?= $desa ?></h4>
                 <button class="btn btn-secondary" data-toggle="modal" data-target="#input">Tambah</button>
-                <a href="print_ml.php?desa=<?= $desa ?>" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> &nbsp Print</a>
+                <a href="print_ml.php?desa=<?= $desa ?>&tgl=<?= $tgl ?>&petugas=<?= $petugas ?>" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> &nbsp Print</a>
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered" id="myTable">
                         <thead>
@@ -30,7 +32,7 @@ $desa = $_GET['desa'];
                             include '../scripts/conn.php';
 
                             $no = 1;
-                            $data = mysqli_query($connection, "SELECT * FROM ml_masyarakat WHERE desa='$desa'");
+                            $data = mysqli_query($connection, "SELECT * FROM ml_masyarakat WHERE desa='$desa' AND petugas='$petugas' AND tgl_kunjungan='$tgl'");
                             while ($d = mysqli_fetch_assoc($data)) {
 
                             ?>
@@ -39,7 +41,7 @@ $desa = $_GET['desa'];
                                     <td><?= $d['nik']; ?></td>
                                     <td><?= $d['nama']; ?></td>
                                     <td><?= $d['alamat']; ?></td>
-                                    <td><?= $d['layanan']; ?></td>
+                                    <td><?= $d['pengajuan']; ?></td>
                                     <td>
                                         <button class="btn btn-danger" data-toggle="modal" data-target="#hapus<?= $no; ?>">Hapus</button>
 
@@ -59,7 +61,7 @@ $desa = $_GET['desa'];
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                                        <a href="../scripts/func_proses.php?act=hapus_masyarakat&id=<?= $d['id']; ?>&desa=<?= $desa ?>" class="btn btn-warning">Hapus</a>
+                                                        <a href="../scripts/func_proses.php?act=hapus_masyarakat&id=<?= $d['id']; ?>&desa=<?= $desa ?>&tgl=<?= $tgl ?>" class="btn btn-warning">Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,6 +99,7 @@ $desa = $_GET['desa'];
                         <input type="number" class="form-control" id="nik" id="">
                         <input type="text" id="desa" value="<?= $desa ?>" hidden="true">
                         <input type="text" id="petugas" value="<?= $row['username'] ?>" hidden="true">
+                        <input type="date" id="tgl_kunjungan" value="<?= $tgl ?>" hidden="true">
                     </div>
                     <div class="form-group row">
                         <label for="" class="form-label">Nama</label>
@@ -155,6 +158,7 @@ $desa = $_GET['desa'];
         var alamat = $('#alamat').val();
         var desa = $('#desa').val();
         var petugas = $('#petugas').val();
+        var tgl_kunjungan = $('#tgl_kunjungan').val();
         var laporan = [];
         $('.laporan1').each(function() {
             if ($(this).is(":checked")) {
@@ -174,7 +178,8 @@ $desa = $_GET['desa'];
                 alamat: alamat,
                 laporan: laporan,
                 desa: desa,
-                petugas: petugas
+                petugas: petugas,
+                tgl_kunjungan: tgl_kunjungan
             },
             success: function() {
                 Swal.fire({
@@ -187,7 +192,7 @@ $desa = $_GET['desa'];
                     })
                     .then(function() {
                         window.location.href =
-                            "masyarakat.php?desa=<?= $desa ?>";
+                            "masyarakat.php?desa=<?= $desa ?>&tgl=<?= $tgl ?>";
                     });
             },
             error: function(response) {

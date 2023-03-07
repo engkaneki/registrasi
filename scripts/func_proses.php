@@ -132,12 +132,13 @@ if ($_GET['act'] == 'tolak') {
 } else if ($_GET['act'] == 'hapus_siswa') {
     $id = $_GET['id'];
     $sekolah = $_GET['sek'];
+    $tgl = $_GET['tgl'];
     //query hapus
     $querydelete = mysqli_query($connection, "DELETE FROM gt_siswa WHERE id = '$id'");
 
     if ($querydelete) {
         # redirect ke index.php
-        header("location:../pdip/siswa.php?sek=$sekolah");
+        header("location:../pdip/siswa.php?sek=$sekolah&tgl=$tgl");
     } else {
         echo "ERROR, data gagal dihapus" . mysqli_error($connection);
     }
@@ -146,8 +147,9 @@ if ($_GET['act'] == 'tolak') {
 } else if ($_GET['act'] == 'ml_desa') {
     $desa = $_POST['desa'];
     $tgl_kunjungan = $_POST['tgl_kunjungan'];
+    $petugas = $_POST['petugas'];
 
-    $input = mysqli_query($connection, "INSERT INTO ml_desa(desa, tgl_kunjungan) VALUES('$desa', '$tgl_kunjungan')");
+    $input = mysqli_query($connection, "INSERT INTO ml_desa(desa, tgl_kunjungan, petugas) VALUES('$desa', '$tgl_kunjungan', '$petugas')");
     if ($input) {
         header("location:../pdip/moling.php");
     } else {
@@ -169,24 +171,26 @@ if ($_GET['act'] == 'tolak') {
     $nama = $_POST['nama'];
     $alamat = $_POST['alamat'];
     $desa = $_POST['desa'];
-    $layanan = $_POST['laporan'];
+    $pengajuan = $_POST['laporan'];
     $petugas = $_POST['petugas'];
+    $tgl = $_POST['tgl_kunjungan'];
 
-    $input = mysqli_query($connection, "INSERT INTO ml_masyarakat(nik, nama, alamat, desa, layanan, petugas) VALUES('$nik', '$nama', '$alamat', '$desa', '$layanan', '$petugas')");
+    $input = mysqli_query($connection, "INSERT INTO ml_masyarakat(nik, nama, alamat, pengajuan, tgl_kunjungan, petugas, desa) VALUES('$nik', '$nama', '$alamat', '$pengajuan', '$tgl', '$petugas', '$desa')");
     if ($input) {
-        header("location:../pdip/masyarakat.php?desa=$desa");
+        header("location:../pdip/masyarakat.php?desa=$desa&tgl=$tgl");
     } else {
         echo "ERROR, data gagal di input" . mysqli_error($connection);
     }
 } else if ($_GET['act'] == 'hapus_masyarakat') {
     $id = $_GET['id'];
     $desa = $_GET['desa'];
+    $tgl = $_GET['tgl'];
     //query hapus
     $querydelete = mysqli_query($connection, "DELETE FROM ml_masyarakat WHERE id = '$id'");
 
     if ($querydelete) {
         # redirect ke index.php
-        header("location:../pdip/masyarakat.php?desa=$desa");
+        header("location:../pdip/masyarakat.php?desa=$desa&tgl=$tgl");
     } else {
         echo "ERROR, data gagal dihapus" . mysqli_error($connection);
     }

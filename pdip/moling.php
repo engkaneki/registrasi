@@ -30,10 +30,12 @@ include 'header.php';
                             include '../scripts/conn.php';
 
                             $no = 1;
-                            $data = mysqli_query($connection, "SELECT * FROM ml_desa");
+                            $petugas = $row['username'];
+                            $data = mysqli_query($connection, "SELECT * FROM ml_desa WHERE petugas='$petugas'");
                             while ($d = mysqli_fetch_assoc($data)) {
                                 $desa = $d['desa'];
-                                $dat = mysqli_query($connection, "SELECT * FROM ml_masyarakat WHERE desa='$desa'");
+                                $tgl = $d['tgl_kunjungan'];
+                                $dat = mysqli_query($connection, "SELECT * FROM ml_masyarakat WHERE petugas='$petugas' AND desa='$desa' AND tgl_kunjungan='$tgl'");
                                 $jumlah = mysqli_num_rows($dat);
 
 
@@ -46,7 +48,7 @@ include 'header.php';
                                     <td><?= $jumlah ?></td>
                                     <td>
                                         <button class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $no ?>">Edit</button>
-                                        <a class="btn btn-info" href="masyarakat.php?desa=<?= $desa ?>">Daftar</a>
+                                        <a class="btn btn-info" href="masyarakat.php?desa=<?= $desa ?>&tgl=<?= $tgl ?>">Daftar</a>
 
 
                                         <!-- modal edit -->
@@ -114,6 +116,7 @@ include 'header.php';
                     <div class="form-group">
                         <div class="form-label">Tanggal Kunjungan</div>
                         <input type="date" name="tgl_kunjungan" class="form-control">
+                        <input type="text" name="petugas" value="<?= $row['username'] ?>" hidden="true">
                     </div>
                 </div>
                 <div class="modal-footer">

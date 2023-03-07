@@ -60,7 +60,7 @@ $tgl = $_GET['tgl'];
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                                        <a href="../scripts/func_proses.php?act=hapus_siswa&id=<?= $d['id']; ?>&sek=<?= $sekolah ?>" class="btn btn-warning">hapus</a>
+                                                        <a href="../scripts/func_proses.php?act=hapus_siswa&id=<?= $d['id']; ?>&sek=<?= $sekolah ?>&tgl=<?= $tgl ?>" class="btn btn-warning">Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>
