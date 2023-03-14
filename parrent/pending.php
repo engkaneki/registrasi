@@ -32,7 +32,7 @@ include 'header.php';
 
                             $no = 1;
                             $status = 'besok';
-                            $data = mysqli_query($connection, "SELECT * FROM loket WHERE status='$status' ORDER BY noreg DESC");
+                            $data = mysqli_query($connection, "SELECT * FROM loket WHERE status='$status' ORDER BY id DESC");
                             while ($d = mysqli_fetch_assoc($data)) {
                                 $petugas = $d['petugas'];
                                 $dat = mysqli_query($connection, "SELECT * FROM tbl_users WHERE username='$petugas'");
