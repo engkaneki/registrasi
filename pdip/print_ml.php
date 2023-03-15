@@ -69,4 +69,4 @@ while ($d = mysqli_fetch_array($data)) {
     $pdf->Cell(40, 10, $d['pengajuan'], 1, 1);
 }
 
-$pdf->Output('', $tgl . ' Pak Moling ' . $desa);
+$pdf->Output('', $tgl . ' Pak Moling ' . $desa . '.pdf');
