@@ -30,9 +30,9 @@ include 'header.php';
                             $data = mysqli_query($connection, "SELECT * FROM tbl_users WHERE role='loket'");
                             while ($a = mysqli_fetch_assoc($data)) {
                                 $petugas = $a['username'];
-                                $data2 = mysqli_query($connection, "SELECT * FROM loket WHERE petugas='$petugas'");
+                                $data2 = mysqli_query($connection, "SELECT * FROM loket WHERE petugas='$petugas' AND status='selesai'");
                                 $d = mysqli_num_rows($data2);
-                                $data3 = mysqli_query($connection, "SELECT * FROM loket WHERE petugas='$petugas' AND tgl_pengajuan='$tgl_hari_ini'");
+                                $data3 = mysqli_query($connection, "SELECT * FROM loket WHERE petugas='$petugas' AND tgl_pengajuan='$tgl_hari_ini' AND status='selesai'");
                                 $dd = mysqli_num_rows($data3);
                                     
                             ?>
