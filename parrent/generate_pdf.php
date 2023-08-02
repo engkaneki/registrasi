@@ -1,6 +1,6 @@
 <?php
 // Include TCPDF library
-require_once('tcpdf/tcpdf/tcpdf.php');
+require_once('tcpdf/tcpdf.php');
 
 // Create new PDF document
 $pdf = new TCPDF('L', 'mm', 'A4', true, 'UTF-8', false);
@@ -32,29 +32,29 @@ ob_start();
 
 <head>
     <style>
-    /* Adjusted inline styling */
-    .tabelpelayanan {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: collapse;
-        font-size: 10px;
-        /* Change font size to 10 */
-        /* Remove border from header */
-        border-top: none;
-        border-left: none;
-        border-right: none;
-    }
+        /* Adjusted inline styling */
+        .tabelpelayanan {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            font-size: 10px;
+            /* Change font size to 10 */
+            /* Remove border from header */
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
 
-    .tabelpelayanan th,
-    .tabelpelayanan td {
-        border: 1px solid #131212;
-        padding: 6px;
-        /* Adjust padding */
-        text-align: center;
-        /* Center align text in all cells */
-        vertical-align: middle;
-        /* Vertically center content */
-    }
+        .tabelpelayanan th,
+        .tabelpelayanan td {
+            border: 1px solid #131212;
+            padding: 6px;
+            /* Adjust padding */
+            text-align: center;
+            /* Center align text in all cells */
+            vertical-align: middle;
+            /* Vertically center content */
+        }
     </style>
 </head>
 
