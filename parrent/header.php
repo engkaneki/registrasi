@@ -140,12 +140,15 @@ $tgl_hari_ini = date("Y-m-d");
 
                     <li class="sidebar-item">
                         <a href="#laporan" class="sidebar-link" data-toggle="collapse">
-                            <i class="align-middle mr-2 fas fa-fw fa-user-secret"></i>
+                            <i class="align-middle mr-2 fas fa-fw fa-print"></i>
                             <span class="align-middle">Laporan</span>
                         </a>
                         <ul class="sidebar-dropdown list-unstyled collapse" id="laporan" data-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="laporan.php" class="sidebar-link">Laporan</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="generate_pdf.php" class="sidebar-link">Cetak</a>
                             </li>
                         </ul>
                     </li>

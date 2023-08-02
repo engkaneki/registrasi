@@ -1,40 +1,48 @@
+<?php
+// Include TCPDF library
+require_once('tcpdf/tcpdf/tcpdf.php');
+
+// Create new PDF document
+$pdf = new TCPDF('L', 'mm', 'A4', true, 'UTF-8', false);
+
+// Set document information
+$pdf->SetCreator(PDF_CREATOR);
+$pdf->SetTitle('Laporan Pelayanan');
+$pdf->SetSubject('Laporan Pelayanan Front Office');
+$pdf->SetKeywords('Laporan, Pelayanan, Front Office');
+
+// Set default monospaced font
+$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+// Set margins
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// Set font
+$pdf->SetFont('helvetica', '', 10); // Change font size to 10
+
+// Add a page
+$pdf->AddPage();
+
+// HTML content with adjusted inline styling
+ob_start();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>LAPORAN PELAYANAN</title>
-
-    <!-- Normalize or reset CSS with your favorite library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-
-    <!-- Load paper.css for happy printing -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">
-
-    <!-- Set page size here: A4, A5 or A3 -->
-    <!-- Set also "landscape" if you need -->
     <style>
-        @page {
-            size: A4
-        }
-
-        #title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
+        /* Adjusted inline styling */
         .tabelpelayanan {
             width: 100%;
             margin-top: 20px;
             border-collapse: collapse;
-            table-layout: fixed;
-            font-size: 12px;
-        }
-
-        .tabelpelayanan>tr,
-        th {
-            border: 1px solid #131212;
-            padding: 8px;
+            font-size: 10px;
+            /* Change font size to 10 */
+            /* Remove border from header */
+            border-top: none;
+            border-left: none;
+            border-right: none;
         }
 
         .tabelpelayanan th,
@@ -47,22 +55,13 @@
             vertical-align: middle;
             /* Vertically center content */
         }
-
-        .photo {
-            width: 30px;
-            height: 40px;
-        }
     </style>
 </head>
 
-<!-- Set "A4", "A5" or "A3" for class name -->
-<!-- Set also "landscape" if you need -->
-
-
-<body class="A4 landscape">
-
+<body>
     <!-- Halaman 1 -->
     <section class="sheet padding-10mm">
+
         <table style="width: 100%">
             <tr>
                 <td align="center">
@@ -77,7 +76,6 @@
                 </td>
             </tr>
         </table>
-
         <table class="tabelpelayanan">
             <tr>
                 <th rowspan="2" style="width: 20px;">No</th>
@@ -205,9 +203,6 @@
             }
             ?>
         </table>
-
-        <br>
-        <br>
         <?php
         $daftarBulanIndonesia = array(
             1 => "Januari",
@@ -225,6 +220,8 @@
         );
         ?>
 
+        <br>
+        <br>
         <table style="width: 100%">
             <tr>
                 <td width="70%"></td>
@@ -240,8 +237,16 @@
                 </td>
             </tr>
         </table>
-
     </section>
 </body>
 
 </html>
+<?php
+$content = ob_get_clean();
+
+// Convert HTML to PDF
+$pdf->writeHTML($content, true, false, true, false, '');
+
+// Close and output PDF document
+$pdf->Output('laporan_pelayanan.pdf', 'I');
+?>
