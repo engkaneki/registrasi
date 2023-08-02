@@ -64,13 +64,13 @@ $tgl_hari_ini = date("Y-m-d");
     <script src="js/webcam.js"></script>
 
     <style>
-        body {
-            opacity: 0;
-        }
+    body {
+        opacity: 0;
+    }
 
-        img .pp {
-            object-fit: contain;
-        }
+    img .pp {
+        object-fit: contain;
+    }
     </style>
     <script src="js/settings.js"></script>
 </head>
@@ -86,7 +86,8 @@ $tgl_hari_ini = date("Y-m-d");
             </a>
             <div class="sidebar-content">
                 <div class="sidebar-user">
-                    <img src="../images/users/<?= $row['foto']; ?>" class="img-fluid rounded-circel mb-2 pp" alt="" srcset="">
+                    <img src="../images/users/<?= $row['foto']; ?>" class="img-fluid rounded-circel mb-2 pp" alt=""
+                        srcset="">
                     <div class="font-weight-bold"><?= $row['nama_pengguna'] ?></div>
                     <div><a href="#" data-toggle="modal" data-target="#gantifoto">ganti foto</a></div>
                 </div>
@@ -145,10 +146,10 @@ $tgl_hari_ini = date("Y-m-d");
                         </a>
                         <ul class="sidebar-dropdown list-unstyled collapse" id="laporan" data-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="laporan.php" class="sidebar-link">Laporan</a>
+                                <a href="laporan.php" class="sidebar-link" target="_blank">Laporan</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="generate_pdf.php" class="sidebar-link">Cetak</a>
+                                <a href="generate_pdf.php" class="sidebar-link" target="_blank">Cetak</a>
                             </li>
                         </ul>
                     </li>
@@ -166,7 +167,8 @@ $tgl_hari_ini = date("Y-m-d");
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown ml-lg-2">
-                            <a href="#" class="nav-link dropdown-toggle position-relative" id="userDropdown" data-toggle="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle position-relative" id="userDropdown"
+                                data-toggle="dropdown">
                                 <i class="align-middle fas fa-cog"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -203,11 +205,13 @@ $tgl_hari_ini = date("Y-m-d");
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="../scripts/function_user.php?act=updateprofile&id=<?= $id_user ?>" method="POST" enctype="multipart/form-data">
+                        <form action="../scripts/function_user.php?act=updateprofile&id=<?= $id_user ?>" method="POST"
+                            enctype="multipart/form-data">
                             <div class="modal-body m-3">
                                 <div class="form-group row">
                                     <label class="form-label">Nama Lengkap</label>
-                                    <input id="email" name="email" type="email" class="form-control" value="<?= $row['nama_pengguna'] ?>" required>
+                                    <input id="email" name="email" type="email" class="form-control"
+                                        value="<?= $row['nama_pengguna'] ?>" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -223,7 +227,8 @@ $tgl_hari_ini = date("Y-m-d");
             <div class="modal fade" id="gantifoto" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-md modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <form action="../scripts/func_user.php?act=gantifoto&id=<?= $row['id'] ?>" method="post" enctype="multipart/form-data">
+                        <form action="../scripts/func_user.php?act=gantifoto&id=<?= $row['id'] ?>" method="post"
+                            enctype="multipart/form-data">
                             <div class="modal-header">
                                 <h2 class="modal-title">Ganti Foto Profil</h2>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
