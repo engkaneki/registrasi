@@ -32,29 +32,29 @@ ob_start();
 
 <head>
     <style>
-        /* Adjusted inline styling */
-        .tabelpelayanan {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            font-size: 10px;
-            /* Change font size to 10 */
-            /* Remove border from header */
-            border-top: none;
-            border-left: none;
-            border-right: none;
-        }
+    /* Adjusted inline styling */
+    .tabelpelayanan {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        font-size: 10px;
+        /* Change font size to 10 */
+        /* Remove border from header */
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
 
-        .tabelpelayanan th,
-        .tabelpelayanan td {
-            border: 1px solid #131212;
-            padding: 6px;
-            /* Adjust padding */
-            text-align: center;
-            /* Center align text in all cells */
-            vertical-align: middle;
-            /* Vertically center content */
-        }
+    .tabelpelayanan th,
+    .tabelpelayanan td {
+        border: 1px solid #131212;
+        padding: 6px;
+        /* Adjust padding */
+        text-align: center;
+        /* Center align text in all cells */
+        vertical-align: middle;
+        /* Vertically center content */
+    }
     </style>
 </head>
 
@@ -201,6 +201,24 @@ ob_start();
 
                 echo "<td>0</td></tr>";
             }
+
+
+            // Hitung total jumlah seluruh laporan untuk setiap jenis layanan dan total selama 1 tahun
+            $total_jenis_layanan = array();
+            $total_jumlah_tahun = 0;
+
+            foreach ($jenis_layanan as $laporan => $value) {
+                $total_jenis = array_sum($total_per_jenis_layanan[$laporan]);
+                $total_jenis_layanan[$laporan] = $total_jenis;
+                $total_jumlah_tahun += $total_jenis;
+            }
+
+            // Tampilkan total jumlah selama 1 tahun
+            echo "<tr><td colspan=\"2\"><strong>Total</strong></td>";
+            foreach ($jenis_layanan as $laporan => $value) {
+                echo "<td><strong>{$total_jenis_layanan[$laporan]}</strong></td>";
+            }
+            echo "<td><strong>{$total_jumlah_tahun}</strong></td></tr>";
             ?>
         </table>
         <?php
