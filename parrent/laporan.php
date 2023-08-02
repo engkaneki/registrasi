@@ -14,43 +14,44 @@
     <!-- Set page size here: A4, A5 or A3 -->
     <!-- Set also "landscape" if you need -->
     <style>
-    @page {
-        size: A4
-    }
+        @page {
+            size: A4
+        }
 
-    #title {
-        font-size: 18px;
-        font-weight: bold;
-    }
+        #title {
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-    .tabelpelayanan {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: collapse;
-        table-layout: fixed;
-        font-size: 12px;
-    }
+        .tabelpelayanan {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 12px;
+        }
 
-    .tabelpelayanan>tr,
-    th {
-        border: 1px solid #131212;
-        padding: 8px;
-    }
+        .tabelpelayanan>tr,
+        th {
+            border: 1px solid #131212;
+            padding: 8px;
+        }
 
-    .tabelpelayanan td {
-        border: 1px solid #131212;
-        padding: 8px;
-    }
+        .tabelpelayanan td {
+            border: 1px solid #131212;
+            padding: 8px;
+        }
 
-    .photo {
-        width: 30px;
-        height: 40px;
-    }
+        .photo {
+            width: 30px;
+            height: 40px;
+        }
     </style>
 </head>
 
 <!-- Set "A4", "A5" or "A3" for class name -->
 <!-- Set also "landscape" if you need -->
+
 
 <body class="A4 landscape">
 
@@ -189,6 +190,41 @@
                 echo "<td>0</td></tr>";
             }
             ?>
+        </table>
+
+        <br>
+        <br>
+        <?php
+        $daftarBulanIndonesia = array(
+            1 => "Januari",
+            2 => "Februari",
+            3 => "Maret",
+            4 => "April",
+            5 => "Mei",
+            6 => "Juni",
+            7 => "Juli",
+            8 => "Agustus",
+            9 => "September",
+            10 => "Oktober",
+            11 => "November",
+            12 => "Desember"
+        );
+        ?>
+
+        <table style="width: 100%">
+            <tr>
+                <td width="70%"></td>
+                <td align="center">
+                    Batu Bara, <?php echo date('d') . ' ' . $daftarBulanIndonesia[date('n')] . ' ' . date('Y'); ?>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <u>HAMDAN, S.Pd., M.Si</u><br>
+                    NIP. 197112211998031006
+                </td>
+            </tr>
         </table>
 
     </section>
